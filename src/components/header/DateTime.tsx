@@ -1,20 +1,12 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Label from './Label';
+import Label from '../label/Label';
+import { StyledDateTime } from './styles/styles';
 
 const dateFormat:string = 'd MMM HH:mm';
 
-const StyledDateTime = styled.div`
-   font-size: 20px;
-   font-weight: 500;
-   text-align: end;
-   color: white;
-   @media (max-width: 567px) {
-      font-size: 18px;
-   }
-`;
+
 
 const DateTime = () => {
    const [currentDate, setCurrentDate] = useState(new Date());

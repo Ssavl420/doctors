@@ -1,55 +1,19 @@
-import styled from "styled-components"
 import TimeTable from "./TimeTable"
 import { Key } from "react"
-import { date_begin, date_end } from "./DoctorList"
+import { date_begin, date_end } from "../DoctorList"
+import { StyleDoctorCard, StyledDoctorTitle, StyledTimeTable } from "./styles/styles"
+import { TDoctorCard, TTimeRange } from "./types/types"
 
-const StyleDoctorCard = styled.div`
-   margin-bottom: 20px;
-   padding: 20px;
-   border: 1px solid grey;
-   border-radius: 15px;
-   box-shadow: 5px 5px 10px 0px #c7c7c7;
-   @media (max-width: 767px) {
-      padding: 10px;
-   }
-`
-const StyledDoctorTitle = styled.div`
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   @media (max-width: 767px) {
-      p {
-         margin: 0;
-      }
-   }
-`
-const StyledTimeTable = styled.ul`
-   padding: 0px;
-   display: flex;
-   justify-content: space-between;
-   list-style: none;
-   gap: 15px;
-   @media (max-width: 767px) {
-      justify-content: space-between;
-      font-size: 10px;
-      gap: 10px;
-   }
-`
 
-type TDoctorCard = {
-   specialty: {
-      name: string,
-      cabinet: string,
-      id: string,
-      time_table: TTimeRange[],
-   }
-}
 
-export type TTimeRange = {
-   day_number: string;
-   time_start: string;
-   time_end: string;
-}
+
+const daysOfWeek = [
+   {monday: 'Понедельник'},
+   {tuesday : 'Вторник'},
+   {wednesday : 'Среда'},
+   {thursday : 'Четверг'},
+   {Friday : 'Пятница'}
+]
 
 
 const DoctorCard: React.FC<TDoctorCard> = ({ specialty }) => {

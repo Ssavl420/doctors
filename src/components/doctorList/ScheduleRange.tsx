@@ -1,7 +1,13 @@
 import styled from "styled-components"
 
-const StyleScheduleRange = styled.p`
-   margin: 0;
+const StyleScheduleRange = styled.section`
+   margin-bottom: 20px;
+   p {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+      color: white;
+   }
 `
 
 type TScheduleRangeProps = {
@@ -12,7 +18,7 @@ type TScheduleRangeProps = {
 const ScheduleRange = ({ date_begin, date_end }: TScheduleRangeProps) => {
    return (
       <StyleScheduleRange>
-         Расписание: {date_begin} - {date_end}
+         <p>Расписание: {date_begin} - {date_end}</p>
       </StyleScheduleRange>
    )
 }

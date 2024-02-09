@@ -1,12 +1,6 @@
-import styled from "styled-components"
+import { StyledDoctorSpecialty } from "./styles/styles"
+import { TDoctorSpecialty } from "./types/types"
 
-const StyledDoctorSpecialty = styled.h5`
-   padding: 0;
-`
-
-type TDoctorSpecialty = {
-   specialty: string,
-}
 
 const DoctorSpecialty: React.FC<TDoctorSpecialty> = ({ specialty }) => {
    return (

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import DoctorList from './components/DoctorList'
-import Header from './components/Header'
-import LpuList from './components/LpuList'
+import DoctorList from './components/doctorList/DoctorList'
+import Header from './components/header/Header'
+import LpuList from './components/lpuList/LpuList'
 
 function App() {
   const [selectedLpuId, setSelectedLpuId] = useState<string>('');

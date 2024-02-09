@@ -1,87 +1,12 @@
 import axios from 'axios';
 import { endOfWeek, format, startOfWeek } from 'date-fns';
 import { useEffect, useState } from 'react';
-import styled from "styled-components";
 import DivisionTitle from './DivisionTitle';
-import DivisionCard, { TDivisionCards } from './DivisionCard';
-import { TTimeRange } from './DoctorCard';
+import DivisionCard from './divisionCard/DivisionCard';
 import ScheduleRange from './ScheduleRange';
-
-const StyledLoading = styled.div`
-   margin-top: 3em;
-   text-align: center;
-`
-const StyledDivisionsCardWrap = styled.ul`
-   margin-top: 0;
-   padding-top: 50px;
-   padding-left: 0;
-   display: flex;
-   flex-direction: column;
-   gap: 30px;
-   list-style: none;
-   @media (max-width: 767px) {
-      padding-top: 30px;
-   }
-`
-const StyledDivisionCardWrap = styled.li`
-   padding: 5px 25px;
-   font-weight: 500;
-   color: black;
-   background: white;
-   border-radius: 15px;
-   @media (max-width: 767px) {
-      padding: 15px;
-   }
-   hr {
-      margin: 0px;
-   }
-`
-//-------------------------------------------------------------------------------------------------
-
-type TDivisionInfoProps = {
-   divisionId: string,
-   divisionName: string,
-   divisionAddress: string,
-   divisionForKids: string,
-   doctors: {
-      times: {
-         EMPLOYER_ID: string;
-         DAY_NUMBER: string;
-         TIME_BEGIN_S: string;
-         TIME_END_S: string;
-      }[],
-      resources: {
-         EMP_SPEC: string;
-         EMP_NAME: string;
-         CAB_NAME: string;
-         EMP_ID: string;
-      }[],
-   },
-};
-
-type TDivisionType = {
-   id: string,
-   lpu_name: string,
-   address: string,
-   for_kids: string,
-};
-
-type TDivision = {
-   id: string;
-   division: string;
-   address: string;
-   for_kids: string;
-   doctors: {
-      ophthalmologists?: TDivisionCards[];
-      otorhinolaryngologists?: TDivisionCards[]
-   };
-};
-
-type TDoctorListProps = {
-   selectedLpuId: string
-};
-
-//-------------------------------------------------------------------------------------------------
+import { StyledLoading, StyledDivisionsCardWrap, StyledDivisionCardWrap } from './styles/styles';
+import { TDoctorListProps, TDivisionInfoProps, TDivisionType, TDivision } from './types/types';
+import { TTimeRange } from './divisionCard/types/types';
 
 const currentDate: Date = new Date();
 const dateFormat: string = 'dd.MM.yyyy';
@@ -91,8 +16,7 @@ const formattedStartDate: string = format(startOfWeekDate, dateFormat);
 const formattedEndDate: string = format(endOfWeekDate, dateFormat);
 export const date_begin: string = formattedStartDate;
 export const date_end: string = formattedEndDate;
-
-const specialtyOphthalmologist: string = "Врач-офтальмолог";
+export const specialtyOphthalmologist: string = "Врач-офтальмолог";
 export const specialtyLor: string = "Врач-оториноларинголог";
 
 //-------------------------------------------------------------------------------------------------
@@ -103,8 +27,6 @@ const DoctorList: React.FC<TDoctorListProps> = ({ selectedLpuId }) => {
    const [divisionsID, setDivisionsID] = useState([]);
    const [loading, setLoading] = useState(false);
    const lpuID: string = selectedLpuId;
-
-
 
    useEffect(() => {
       fetchDivision();
@@ -222,29 +144,27 @@ const DoctorList: React.FC<TDoctorListProps> = ({ selectedLpuId }) => {
             }
          };
 
-         const filterDoctors = (specialty: string): { name: string, cabinet: string, id: string, time_table: TTimeRange[] }[] => { 
+         const filterDoctors = (specialty: string): { name: string, cabinet: string, id: string, time_table: TTimeRange[] }[] => {
             const key: string = "EMP_ID";
             const doctorsWithSpecialty = obj.doctors.resources.filter((doctor: { EMP_SPEC: string }) => doctor.EMP_SPEC === specialty);
-         
+
             function getUniqueDoctors(arr: { [key: string]: string | number }[], key: string) {
-               
                return arr.reduce((acc: { [key: string]: any }, doctor: { [key: string]: string | number }) => {
-                  console.log(acc);
-                  console.log(key);
+
                   if (!acc[doctor[key]]) {
                      acc[doctor[key]] = doctor;
                   }
                   return acc;
                }, {});
             }
-         
-            return Object.values(getUniqueDoctors(doctorsWithSpecialty, key)).map((doctor: { EMP_NAME:string, CAB_NAME:string, EMP_ID: string }) => {
+
+            return Object.values(getUniqueDoctors(doctorsWithSpecialty, key)).map((doctor: { EMP_NAME: string, CAB_NAME: string, EMP_ID: string }) => {
 
                const { EMP_NAME, CAB_NAME, EMP_ID } = doctor;
                const cabinetNumber = CAB_NAME.replace(/[^0-9]/g, '');
                const cabinet = `${cabinetNumber} каб.`;
                const timeTable = timeTableDoctor(EMP_ID).result;
-         
+
                return {
                   name: EMP_NAME,
                   cabinet: cabinet,
