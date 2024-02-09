@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { ReactNode } from 'react';
-import { Tabs } from 'antd';
 import styled from "styled-components";
 
 interface TimeTableProps {
@@ -36,17 +35,6 @@ const TimeTable: React.FC<TimeTableProps> = ({ dayOfWeek, children }) => {
          <p>{dayOfWeek}</p>
          {children}
       </Style>
-      // <Tabs
-      //    type="card"
-      //    items={new Array(5).fill(null).map((_, i) => {
-      //       const id = String(i + 1);
-      //       return {
-      //          label: { dayOfWeek },
-      //          key: id,
-      //          children: { children },
-      //       };
-      //    })}
-      // />
    )
 }
 

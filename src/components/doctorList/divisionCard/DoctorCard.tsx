@@ -7,13 +7,13 @@ import { TDoctorCard, TTimeRange } from "./types/types"
 
 
 
-const daysOfWeek = [
-   {monday: 'Понедельник'},
-   {tuesday : 'Вторник'},
-   {wednesday : 'Среда'},
-   {thursday : 'Четверг'},
-   {Friday : 'Пятница'}
-]
+// const daysOfWeek = [
+//    {monday: 'Понедельник'},
+//    {tuesday : 'Вторник'},
+//    {wednesday : 'Среда'},
+//    {thursday : 'Четверг'},
+//    {Friday : 'Пятница'}
+// ]
 
 
 const DoctorCard: React.FC<TDoctorCard> = ({ specialty }) => {

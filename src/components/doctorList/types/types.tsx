@@ -1,3 +1,5 @@
+import { TDivisionCards } from "../divisionCard/types/types";
+
 export type TDivisionInfoProps = {
    divisionId: string,
    divisionName: string,
