@@ -1,26 +1,8 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { ReactNode } from 'react';
-import styled from "styled-components";
+import { StyledToday, StyledLi } from './styles/styles';
+import { TimeTableProps } from './types/types';
 
-interface TimeTableProps {
-   dayOfWeek: string,
-   children: ReactNode;
-}
-
-const StyledToday = styled.li`
-   font-weight: 700;
-   :last-child {
-      margin-bottom: 0;
-   }
-`
-
-const StyledLi = styled.li`
-   color: grey;
-   :last-child {
-      margin-bottom: 0;
-   }
-`
 
 const TimeTable: React.FC<TimeTableProps> = ({ dayOfWeek, children }) => {
 

@@ -63,7 +63,6 @@ const DoctorList: React.FC<TDoctorListProps> = ({ selectedLpuId }) => {
    }
 
    const fetchData = async () => {
-      console.log('Рендер fetchData')
 
       try {
          const requests = divisionsID.map(async (division: TDivisionType): Promise<TDivisionInfoProps> => {
@@ -100,8 +99,6 @@ const DoctorList: React.FC<TDoctorListProps> = ({ selectedLpuId }) => {
 
          const allDoctorsFromLpu = await Promise.all(requests);
          setLpuDoctors(allDoctorsFromLpu);
-
-         console.log(typeof (allDoctorsFromLpu))
 
          setLoading(false);
       } catch (error) {

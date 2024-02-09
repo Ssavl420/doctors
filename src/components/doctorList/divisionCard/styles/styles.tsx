@@ -38,3 +38,17 @@ export const StyledTimeTable = styled.ul`
       gap: 10px;
    }
 `
+
+export const StyledToday = styled.li`
+   font-weight: 700;
+   :last-child {
+      margin-bottom: 0;
+   }
+`
+
+export const StyledLi = styled.li`
+   color: grey;
+   :last-child {
+      margin-bottom: 0;
+   }
+`

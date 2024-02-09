@@ -18,6 +18,7 @@ const LpuList: React.FunctionComponent<TLpuListProps> = ({ onLpuSelect }) => {
    }, []);
 
    const fetchData = async () => {
+
       try {
          const lpuData = await axios.get('https://reg.nso.ru/rpc/er/lpu', {
             params: {

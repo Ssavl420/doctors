@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type TDivisionCards = {
    name: string;
    cabinet: string;
@@ -27,4 +29,9 @@ export type TTimeRange = {
    day_number: string;
    time_start: string;
    time_end: string;
+}
+
+export interface TimeTableProps {
+   dayOfWeek: string,
+   children: ReactNode;
 }
